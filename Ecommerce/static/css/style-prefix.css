@@ -529,11 +529,16 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
 .header-main {
   padding: 20px 0;
   border-bottom: 1px solid var(--cultured);
+  background-color: white;
 }
 
 .header-logo { margin-bottom: 20px; }
 
-.header-logo img { margin: auto; }
+.header-logo img {
+  margin: auto;
+  height: 125px;
+  width: 180px;
+}
 
 .header-search-container { position: relative; }
 
@@ -568,6 +573,7 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
 }
 
 .search-btn:hover { color: var(--salmon-pink); }
+.header-user-actions .action-btn:hover { color: var(--salmon-pink); }
 
 .mobile-bottom-navigation {
   background: var(--white);

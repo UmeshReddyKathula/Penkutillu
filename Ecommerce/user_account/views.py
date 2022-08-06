@@ -11,4 +11,4 @@ def loginuser(request):
 
         if user is not None:
             return HttpResponse(' he is valid user ')
-    return render(request, 'login.html')
+    return render(request, 'dummy.html')

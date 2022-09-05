@@ -1,0 +1,222 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+   <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./static/images/logo/favicon P.png" type="image/x-icon">
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./static/css/style-prefix.css">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!--<link rel="stylesheet" href="./static/css/login/style.css">-->
+
+</head>
+<body>
+  <header>
+
+    <div class="header-top">
+
+      <div class="container">
+
+        <ul class="header-social-container">
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="https://www.instagram.com/umesh_reddy_k/" class="social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-linkedin"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+        <div class="header-alert-news">
+          <p>
+            <b>Free Shipping</b>
+            This Week Order Over - Rs.999
+          </p>
+        </div>
+
+        <div class="header-top-actions">
+
+          <select name="currency">
+
+            <option value="usd">USD &dollar;</option>
+            <option value="INR">INR &#x20B9;</option>
+
+          </select>
+
+          <select name="language">
+
+            <option value="en-US">English</option>
+            <option value="hi-INDIA">Hindi</option>
+            <option value="te-INDIA">Telugu</option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="header-main">
+  
+      <div class="container">
+  
+        <a href="/" class="header-logo">
+          <img src="{% static 'images/logo/main logo.png' %}" alt="Penkutillu's logo" width="120" height="100">
+        </a>
+
+        <div class="header-search-container">
+
+          <input type="search" name="search" class="search-field" placeholder="Enter your product name...">
+
+          <button class="search-btn">
+            <ion-icon name="search-outline"></ion-icon>
+          </button>
+
+        </div>
+
+        <div class="header-user-actions">
+        
+          {% if user.is_authenticated %}
+          <div class="dropdown">
+            <span><button onclick="myFunction()" class="dropbtn">Hello, {{user.first_name}}</button></span>
+            <div id="myDropdown" class="dropdown-content">
+              <a href="#"><i style="font-size:20px" class="fa">&#xf2be; My Profile</i></a>
+              <a href="#"><i style="font-size:20px" class="fa">&#xf07a; My Orders</i></a>
+              <a href="#"><i style="font-size:20px" class="fa">&#xf011; Logout</i></a>
+            </div>
+          </div>
+          <a href="login"><button class="action-btn">
+            <ion-icon name="person-outline"></ion-icon>  
+          </button></a>
+          {% endif %}
+          
+          
+          <button class="action-btn">
+            <ion-icon name="heart-outline"></ion-icon>
+            <span class="count">0</span>
+          </button>
+
+          <button class="action-btn">
+            <ion-icon name="bag-handle-outline"></ion-icon>
+            <span class="count">0</span>
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>  
+  </header>
+  <section class="ftco-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6 text-center mb-5">
+          <h2 class="heading-section">Please Signin Here</h2>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-5">
+          <div class="wrap">
+            <div class="img" style="background-image: url(static/images/logo/Penku.jpg);"></div>
+            <div class="login-wrap p-4 p-md-5">
+              <div class="d-flex">
+                <div class="w-100">
+                  <h3 class="mb-4">Sign In</h3>
+                </div>
+                <div class="w-100">
+                  <p class="social-media d-flex justify-content-end">
+                    <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
+                    <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
+                    <a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-instagram"></span></a>
+                  </p>
+                </div>
+              </div>
+              <form action="login" method="post">
+                {% csrf_token %}
+                <div class="form-group mt-3">
+                  <input type="text" name="username" class="form-control" required>
+                  <label class="form-control-placeholder" for="username">Username</label>
+                </div>
+                <div class="form-group">
+                  <input id="password-field" type="password" name="password" class="form-control" required>
+                  <label class="form-control-placeholder" for="password">Password</label>
+                  <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                </div>
+                <div class="form-group">
+                  <button type="submit" class="form-control btn btn-primary rounded submit px-3">Sign In</button>
+                </div>
+                <div class="form-group d-md-flex">
+                  <div class="w-50 text-left">
+                    <label class="checkbox-wrap checkbox-primary mb-0">Remember Me
+                    <input type="checkbox" checked>
+                    <span class="checkmark"></span>
+                    </label>
+                  </div>
+                  <div class="w-50 text-md-right">
+                    <a href="#">Forgot Password</a>
+                  </div>
+                </div>
+              </form>
+              <p class="text-center">Not a member? <a href="signup">Sign Up</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="./static/js/js/jquery.min.js"></script>
+  <script src="./static/js/js/popper.js"></script>
+  <script src="./static/js/js/bootstrap.min.js"></script>
+  <script src="./static/js/js/main.js"></script>  
+<!--
+    - custom js link
+  -->
+  <script src="./static/js/script.js"></script>
+
+  <!--
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>
+  
+  

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+{% for prod in products %}
+    <td>{{prod.product_id}}</td>
+    <td>{{prod.product_name}}</td>
+    <td>{{prod.price}}</td>
+    {% if prod.image %}
+    <td>
+        <img src="{{ prod.image }}" alt="" class="prod-size">
+    </td>
+    {% endif %}
+{% endfor %}    
+
+{% endblock %}

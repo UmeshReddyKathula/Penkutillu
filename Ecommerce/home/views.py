@@ -1,5 +1,8 @@
+from multiprocessing import context
 from django.shortcuts import render,HttpResponse,redirect
 from django.contrib.auth.models import User, auth
+from django.contrib.auth import authenticate, login,logout
+from .models import Product
 
 # Create your views here.
 
@@ -7,12 +10,11 @@ def homeapp(request):
     return render(request,'home.html')
 
 def loginuser(request):
+
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-
         user = auth.authenticate(username=username,password=password)
-
         if user is not None:
             auth.login(request,user)
             return redirect('/')
@@ -50,3 +52,14 @@ def signupuser(request):
     
     else:
         return render(request, 'signup.html',context)
+
+def logout(request):
+    logout(request)
+    return render(request, 'login.html')
+
+def allproducts(request):
+    context={}
+    data = Product.objects.all()
+    context['products'] = data
+
+    return render(request,'product.html',context)

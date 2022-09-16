@@ -54,12 +54,12 @@ def signupuser(request):
         return render(request, 'signup.html',context)
 
 def logout(request):
-    logout(request)
-    return render(request, 'login.html')
+    auth.logout(request)
+    return redirect('/')
 
 def allproducts(request):
     context={}
     data = Product.objects.all()
     context['products'] = data
 
-    return render(request,'product.html',context)
+    return render(request,'productwise.html',context)
